@@ -17,11 +17,13 @@
 
 ;([-1 -1] [-1 0] [-1 1] [0 -1] [0 1] [1 -1] [1 0] [1 1])
 ;for combines all coordinates... not sure how the let/when emit the list?
+;this is all of the points adjacent or caddy-corner to a given point (relative coordinates)
 (def neighbour-offsets 
   (let [digits (range -1 2)] 
   (for [x digits y digits 
-        :let [value [x y]]
-        :when (not (= value [0 0])) ] value)))
+        :let [value [x y]]              ; :let allows you to give a name to a value inside a (for ...)
+        :when (not (= value [0 0])) ]   ; :when filters out generated values
+    value)))
 
 (defn all-neighbours
   [cell]
