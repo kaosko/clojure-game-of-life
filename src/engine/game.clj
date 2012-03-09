@@ -67,13 +67,19 @@
             (dead-neighbours cells cell))))   ;   get the dead neighbours
 
 
-
+; given a bunch of living cells, create some new cells
+; turn SOME of the dead neighbours into living neighbours, if:
+;   the dead cell has exactly 3 living neighbours
 (defn reproduce
   [cells]
-  (filter #(= parent-count 
-              (count (alive-neighbours cells %))) 
-          (dead-neighbour-cells cells)))
+  (filter #(= parent-count                         ; need exactly 3 parents from the living neighbours
+              (count (alive-neighbours cells %)))  ; 
+          (dead-neighbour-cells cells)))           ; starting with the living cells, find all of the dead neighbours
 
+
+; one "time" unit in the game involves:
+;   creating new cells in medium-populated areas
+;   destroying cells in over- and under-populated areas
 (defn tick [cells] 
   (set/union 
     (set (reproduce cells)) 
