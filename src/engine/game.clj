@@ -1,6 +1,6 @@
 (ns engine.game
    (:require [clojure.set :as set]))
-
+;;constants
 (def under-population 1)
 (def over-population 4)
 (def parent-count 3)
@@ -16,6 +16,7 @@
                          [35 3] [35 4] [36 3] [36 4]})
 
 ;([-1 -1] [-1 0] [-1 1] [0 -1] [0 1] [1 -1] [1 0] [1 1])
+;for combines all coordinates... not sure how the let/when emit the list?
 (def neighbour-offsets 
   (let [digits (range -1 2)] 
   (for [x digits y digits 
