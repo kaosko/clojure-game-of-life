@@ -45,23 +45,36 @@
 ; given a bunch of living cells, and a specific cell, find all of that cell's dead neighbours (0 - 8)
 (defn dead-neighbours
   [cells cell]
-  (filter #(not( contains? cells %))  ; remove all of the dead neighbours 
+  (filter #(not (contains? cells %))  ; remove all of the dead neighbours 
           (all-neighbours cell)))     ; get all 8 of the neighbours of the cell-of-interest
 
+
+; remove (kill) cells with too few neighbours or too many
 (defn regulate  
   [cells]
   (filter #(let [alive-neighbour-count (count (alive-neighbours cells %))]
-            (and 
-              (> alive-neighbour-count under-population ) 
-              (<  alive-neighbour-count over-population) ))cells))
+            (and                                           ; if there are:
+              (> alive-neighbour-count under-population)   ;   more than 1 living neighbour 
+              (< alive-neighbour-count over-population)))  ;   AND fewer than 4 living neighbours
+          cells))                                          ; then let the cell LIVE!!!!
 
+
+; given a bunch of living cells, find ALL of the dead neighbors
 (defn dead-neighbour-cells
   [cells]
-  (reduce set/union (for [cell cells]  (dead-neighbours cells cell))))
+  (reduce set/union                           ; use union because we don't care about duplicates
+          (for [cell cells]                   ; for each living cell:
+            (dead-neighbours cells cell))))   ;   get the dead neighbours
+
+
 
 (defn reproduce
   [cells]
-  (filter #(= parent-count (count (alive-neighbours cells %))) (dead-neighbour-cells cells)))
+  (filter #(= parent-count 
+              (count (alive-neighbours cells %))) 
+          (dead-neighbour-cells cells)))
 
 (defn tick [cells] 
-  (set/union (set (reproduce cells)) (set (regulate cells))))
+  (set/union 
+    (set (reproduce cells)) 
+    (set (regulate cells))))
