@@ -15,31 +15,42 @@
                          [21 3] [21 4] [21 5] [22 3] [22 4] [22 5] [23 2] [23 6] [25 1] [25 2] [25 6] [25 7] 
                          [35 3] [35 4] [36 3] [36 4]})
 
+
 ;([-1 -1] [-1 0] [-1 1] [0 -1] [0 1] [1 -1] [1 0] [1 1])
-;for combines all coordinates... not sure how the let/when emit the list?
 ;this is all of the points adjacent or caddy-corner to a given point (relative coordinates)
 (def neighbour-offsets 
-  (let [digits (range -1 2)] 
-  (for [x digits y digits 
+  (let [digits (range -1 2)]            ; digits is now (list -1 0 1)
+  (for [x digits y digits               ; ... both x and y get each of [-1, 0, 1] ...
         :let [value [x y]]              ; :let allows you to give a name to a value inside a (for ...)
         :when (not (= value [0 0])) ]   ; :when filters out generated values
     value)))
 
+
+; given a cell, get all of its neighbours
 (defn all-neighbours
   [cell]
-  (for [offset neighbour-offsets] (map + offset cell)))
+  (for [offset neighbour-offsets]  ; start with all of the "relative" offsets (each of which is a pair i.e. [1,0])
+    (map + offset cell)))          ; and add each of those relative offsets to the original cell
+                                   ;   remember that map can do cool stuff in Clojure
+                                   ;   so (map + [1,1] [3,4]) -> [4,5]
 
+
+; given a bunch of living cells, and a specific cell, find all of that cell's living neighbours (0 - 8)
 (defn alive-neighbours
   [cells cell]
-  (filter #(contains? cells %) (all-neighbours cell)))
+  (filter #(contains? cells %)     ; remove all of the neighbours that aren't alive
+          (all-neighbours cell)))  ; get the coordinates of the 8 neighbouring cells of the cell-of-interest
 
+
+; given a bunch of living cells, and a specific cell, find all of that cell's dead neighbours (0 - 8)
 (defn dead-neighbours
   [cells cell]
-  (filter #(not( contains? cells %)) (all-neighbours cell)))
+  (filter #(not( contains? cells %))  ; remove all of the dead neighbours 
+          (all-neighbours cell)))     ; get all 8 of the neighbours of the cell-of-interest
 
 (defn regulate  
   [cells]
- (filter #(let [alive-neighbour-count (count (alive-neighbours cells %))]
+  (filter #(let [alive-neighbour-count (count (alive-neighbours cells %))]
             (and 
               (> alive-neighbour-count under-population ) 
               (<  alive-neighbour-count over-population) ))cells))
