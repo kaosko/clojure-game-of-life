@@ -1,10 +1,13 @@
 (ns engine.game
    (:require [clojure.set :as set]))
-;;constants
+
+;; constants for game balance
 (def under-population 1)
 (def over-population 4)
 (def parent-count 3)
 
+; constants defining interesting patterns or configurations
+;   based on the visual effects they produce
 (def box #{[2 1] [2 2] [1 1] [1 2]}) 
 (def boat #{[1 1] [2 1] [1 2] [3 2] [2 3]})
 (def blinker #{[3 1] [3 2] [3 3]}) 
