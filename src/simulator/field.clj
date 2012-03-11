@@ -69,7 +69,7 @@
     .pack
     .show))
 
-
+;;Arguments are the 'engine' and the 'seed' 
 (defn run-game 
   ([engine seed]  
     (run-game engine seed  
