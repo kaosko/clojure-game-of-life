@@ -11,10 +11,14 @@ lein repl
 
 ### Starting the game
 
-;;note that this will crash - but it will start. 
-;;Im not sure (yet) what the "engine" and "seed" args are meant to be.
-;;TODO figure this out and doc as necessary.
-repl> (run-game "???" "???" )
+;;This appears to work, but the Jpanel does essentially nothing. 
+;;Note that, however, we do see a little black square at coordinates 1,2 
+;;this, the "seed" is probably just a set of points of starting cells that are alive.
+
+;;To investigate : 
+;;What is the engine (arg2)? 
+;;Why does the program do nothing ?
+repl> (run-game #{} #{[1 2]})
 
 
 
