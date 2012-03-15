@@ -17,7 +17,7 @@ with leiningen (https://github.com/technomancy/leiningen):
 
  2. from the repl:
  
-        (life gosper-glider-gun)
+        run.run=> (life gosper-glider-gun)
         
 This comes with five example configurations pre-defined: 
 
@@ -29,7 +29,7 @@ This comes with five example configurations pre-defined:
 
 You can also manually specify the set of points life takes. For example,
 
-    (life #{[3 1] [3 2] [3 3]}) 
+    run.run=> (life #{[3 1] [3 2] [3 3]}) 
     
 makes a blinker.
 
