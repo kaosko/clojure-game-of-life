@@ -11,11 +11,11 @@ lein repl
 
 ### Starting the game
 
- 1. lein repl from project folder
+     1. lein repl from project folder
 
- 2. (life gosper-glider-gun) ;; life takes box, boat, blinker, glider and best of all gosper-glider-gun
+     2. (life gosper-glider-gun) ;; life takes box, boat, blinker, glider and best of all gosper-glider-gun
 
- Note: you can also manually specify the set of points life takes: (life #{[3 1] [3 2] [3 3]}) makes a blinker.
+     Note: you can also manually specify the set of points life takes: (life #{[3 1] [3 2] [3 3]}) makes a blinker.
 
 
 ## Installation
