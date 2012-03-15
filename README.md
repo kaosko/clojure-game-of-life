@@ -11,15 +11,11 @@ lein repl
 
 ### Starting the game
 
-;;This appears to work, but the Jpanel does essentially nothing. 
-;;Note that, however, we do see a little black square at coordinates 1,2 
-;;this, the "seed" is probably just a set of points of starting cells that are alive.
+ 1. lein repl from project folder
 
-;;To investigate : 
-;;What is the engine (arg2)? 
-;;Why does the program do nothing ?
-repl> (run-game #{} #{[1 2]})
+ 2. (life gosper-glider-gun) ;; life takes box, boat, blinker, glider and best of all gosper-glider-gun
 
+ Note: you can also manually specify the set of points life takes: (life #{[3 1] [3 2] [3 3]}) makes a blinker.
 
 
 ## Installation
