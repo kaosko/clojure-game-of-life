@@ -1,4 +1,4 @@
-(ns run.run_life
+(ns run.run
   (:use [engine.game])
   (:use [simulator.field]))
 
