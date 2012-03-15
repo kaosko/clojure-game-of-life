@@ -5,4 +5,4 @@
 				 [clj-oauth "1.2.8"]]
   :dev-dependencies [[com.stuartsierra/lazytest "1.1.2"]]
   :repositories {"stuartsierra-releases" "http://stuartsierra.com/maven2"}
-  :main simulator.field)
+  :main run.run_life)
