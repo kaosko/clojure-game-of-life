@@ -6,3 +6,5 @@
  "Choose between games: box, boat, blinker, glider and gosper-glider-gun"
   (run-game tick game))
 
+;;Start the damn thing right off the bat :) 
+(life gosper-glider-gun)

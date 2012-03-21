@@ -26,7 +26,6 @@
   [cell field]
   (not (alive? cell field)))
 
-
 (describe "blinker should"
   (it "oscillate"
     (= blinker (tick (tick blinker)))))
