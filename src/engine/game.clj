@@ -65,9 +65,11 @@
 ; given a bunch of living cells, find ALL of the dead neighbors
 (defn dead-neighbour-cells
   [cells]
-  (reduce set/union                           ; use union because we don't care about duplicates
-          (for [cell cells]                   ; for each living cell:
-            (dead-neighbours cells cell))))   ;   get the dead neighbours
+  (reduce set/union                        ; We want uniqe set of neighbors made by union...
+          (for [c cells]                   ; for :: a X product over a list is the list itself! 
+					   ; running the  dead-neighbors function once for a given "cell")  
+            (dead-neighbours c cells))))    ; -> emit each value returned by dead-neighbors
+					    ;  -> "reduce" them into a unique list.
 
 
 ; given a bunch of living cells, create some new cells
