@@ -68,7 +68,7 @@
   (reduce set/union                        ; We want uniqe set of neighbors made by union...
           (for [c cells]                   ; for :: a X product over a list is the list itself! 
 					   ; running the  dead-neighbors function once for a given "cell")  
-            (dead-neighbours c cells))))    ; -> emit each value returned by dead-neighbors
+            (dead-neighbours cells c))))    ; -> emit each value returned by dead-neighbors
 					    ;  -> "reduce" them into a unique list.
 
 
