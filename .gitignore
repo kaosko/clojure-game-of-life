@@ -1,2 +1,6 @@
 *jar
 classes/
+/bin/
+/.lein-repl-history
+/.nrepl-port
+/target/
